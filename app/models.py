@@ -9,5 +9,5 @@ class Tarefa(db.Model):
         return {
             'id': self.id,
             'titulo': self.titulo,
-            'concluida': self.concluida
+            'não concluida': self.concluida
         }
