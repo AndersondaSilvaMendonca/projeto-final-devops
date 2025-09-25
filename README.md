@@ -1,14 +1,18 @@
-Projeto DevOps - API de Gerenciamento de Tarefas
+# Projeto DevOps - API de Gerenciamento de Tarefas
+
 Este projeto demonstra um pipeline completo de CI/CD para uma aplicação Flask.
 
-Funcionalidades
-API REST para gerenciar tarefas
-Containerização com Docker
-Pipeline de CI/CD com GitHub Actions
-Testes automatizados
-Infraestrutura como Código
-Como executar
-Desenvolvimento local
+## Funcionalidades
+- API REST para gerenciar tarefas
+- Containerização com Docker
+- Pipeline de CI/CD com GitHub Actions
+- Testes automatizados
+- Infraestrutura como Código
+
+## Como executar
+
+### Desenvolvimento local
+```bash
 # Clone o repositório
 git clone <seu-repositorio>
 cd meu-projeto-devops
