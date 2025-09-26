@@ -52,3 +52,18 @@ Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body1
 
 $Body2 = @{titulo = 'Testar Docker'} | ConvertTo-Json
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body2 -ContentType 'application/json'
+
+
+Containerize sua aplicação:
+Tem que ter o docker instalado na maquina local
+powershell
+# Na pasta do seu projeto
+docker build -t minha-api-tarefas .
+
+# Execute
+docker run -p 5000:5000 minha-api-tarefas
+
+1. Teste a API no container:
+powershell
+Invoke-RestMethod -Uri 'http://localhost:5000/health' -Method Get
+
