@@ -7,25 +7,10 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  test:  # ⬅️ SUBSTITUA APENAS ESTE JOB (da linha "test:" até o "deploy:")
     runs-on: ubuntu-latest
     
-    services:
-      postgres:
-        image: postgres:13
-        env:
-          POSTGRES_DB: todo_db
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
-
-    steps:
+    steps:    # ⬅️ MANTENHA toda a estrutura acima e abaixo
     - uses: actions/checkout@v3
     
     - name: Set up Python
@@ -39,8 +24,6 @@ jobs:
         pip install -r requirements.txt
         
     - name: Run tests
-      env:
-        DATABASE_URL: postgresql://user:password@localhost:5432/todo_db
       run: |
         pytest -v tests/
         
@@ -48,7 +31,7 @@ jobs:
       run: |
         docker build -t todo-app .
         
-  deploy:
+  deploy:    # ⬅️ MANTENHA o job deploy como está
     needs: test
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -63,4 +46,3 @@ jobs:
     - name: Simulate deployment
       run: |
         echo "Deploy realizado com sucesso para a branch main!"
-        echo "Aqui iriam os comandos reais de deploy"
