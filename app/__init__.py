@@ -13,7 +13,6 @@ def create_app():
     
     db.init_app(app)
     
-    # Importar modelos DEPOIS de inicializar o db para evitar import circular
     from app.models import Tarefa
     
     # Rotas da API
@@ -30,6 +29,19 @@ def create_app():
         db.session.commit()
         return jsonify(nova_tarefa.to_dict()), 201
     
+    @app.route('/tarefas/<int:id>', methods=['PUT'])  # ✅ NOVA ROTA
+    def atualizar_tarefa(id):
+        tarefa = Tarefa.query.get_or_404(id)
+        dados = request.get_json()
+        
+        if 'titulo' in dados:
+            tarefa.titulo = dados['titulo']
+        if 'concluida' in dados:
+            tarefa.concluida = bool(dados['concluida'])
+        
+        db.session.commit()
+        return jsonify(tarefa.to_dict())
+    
     @app.route('/tarefas/<int:id>', methods=['DELETE'])
     def excluir_tarefa(id):
         tarefa = Tarefa.query.get_or_404(id)
@@ -37,7 +49,6 @@ def create_app():
         db.session.commit()
         return '', 204
     
-    # Health check para monitoramento
     @app.route('/health')
     def health_check():
         return jsonify({'status': 'healthy'})
@@ -47,10 +58,3 @@ def create_app():
         return jsonify({'message': 'API de Tarefas funcionando!'})
     
     return app
-
-# REMOVA esta parte do final do arquivo:
-# if __name__ == '__main__':
-#     app = create_app()
-#     with app.app_context():
-#         db.create_all()
-#     app.run(host='0.0.0.0', port=5000, debug=False)
