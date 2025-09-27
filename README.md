@@ -54,6 +54,11 @@ $Body2 = @{titulo = 'Testar Docker'} | ConvertTo-Json
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body2 -ContentType 'application/json'
 
 
+#5. colocar como concluida
+$BodyUpdate = @{concluida = $true} | ConvertTo-Json
+Invoke-RestMethod -Uri "http://localhost:5000/tarefas/11" -Method Put -Body $BodyUpdate -ContentType 'application/json' -Headers @{'Accept' = 'application/json'}
+
+
 Containerize sua aplicação:
 Tem que ter o docker instalado na maquina local
 powershell
