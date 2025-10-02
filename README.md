@@ -19,7 +19,7 @@ cd meu-projeto-devops
 
 # Configure ambiente virtual
 python -m venv venv
-python3 -m venv venv #Linux
+python3 -m venv venv # Linux
 source venv/bin/activate  # Linux/Mac
 # venv\Scripts\activate  # Windows
 
@@ -27,8 +27,8 @@ source venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 
 # Execute a aplicação
-python run.py
-python3 run.py #Linux
+python run.py # Windows
+python3 run.py # Linux
 
 # Pode ser que precise instalar no ambiente linux debian/ubuntu/mint o python3-venv para funcionar o projeto no linux, a versão pode ser que peça a mais recente: 
 apt install python3.10-venv 
