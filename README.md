@@ -77,5 +77,5 @@ docker run -p 5000:5000 minha-api-tarefas
 powershell
 Invoke-RestMethod -Uri 'http://localhost:5000/health' -Method Get
 
-#Só um teste no linux
+#Só um teste no no windows em casa
 
