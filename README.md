@@ -19,16 +19,17 @@ git clone < seu-repositorio >
 cd meu-projeto-devops
 
 #### Configure ambiente virtual
-python -m venv venv - no Windows <br/>
+python -m venv venv - no Windows powershell<br/>
 python3 -m venv venv - no Linux <br/>
 source venv/bin/activate  - no Linux/Mac <br/>
-venv\Scripts\activate  - no Windows
+venv\Scripts\activate  - no Windows powershell
 
 #### Instale dependências
+
 pip install -r requirements.txt
 
 #### Execute a aplicação
-python run.py - no Windows <br/>
+python run.py - no Windows powershell <br/>
 python3 run.py - no Linux
 
 Pode ser que precise instalar no ambiente linux debian/ubuntu/mint o python3-venv para funcionar o projeto no linux, a versão pode ser que peça a mais recente: 
@@ -36,31 +37,33 @@ apt install python3.10-venv
 
 
 #### 1. Testes no cmd power shell para criar uma tarefa:
-
+No powershell <br/>
 $Body = @{titulo = 'Minha primeira tarefa'} | ConvertTo-Json
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body -ContentType 'application/json'
 
 #### 2. Listar todas as tarefas:
 
-powershell
+No powershell <br/>
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Get
 
 #### 3. Deletar a tarefa (substitua o ID se necessário):
 
-powershell
+No powershell <br/>
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas/1' -Method Delete
 
 #### 4. Criar mais tarefas para testar:
 
-powershell
+No powershell <br/>
 $Body1 = @{titulo = 'Configurar GitHub Actions'} | ConvertTo-Json
-Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body1 -ContentType 'application/json'
-
+Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body1 -ContentType 'application/json' <br/>
+No powershell <br/>
 $Body2 = @{titulo = 'Testar Docker'} | ConvertTo-Json
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body2 -ContentType 'application/json'
 
 
 #### 5. Colocar como concluida
+
+No powershell <br/>
 $BodyUpdate = @{concluida = $true} | ConvertTo-Json
 Invoke-RestMethod -Uri "http://localhost:5000/tarefas/11" -Method Put -Body $BodyUpdate -ContentType 'application/json' -Headers @{'Accept' = 'application/json'}
 
