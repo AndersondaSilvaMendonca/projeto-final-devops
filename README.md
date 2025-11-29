@@ -12,44 +12,45 @@ Este projeto demonstra um pipeline completo de CI/CD para uma aplicação Flask.
 ## Como executar
 
 ### Desenvolvimento local
-```bash
-# Clone o repositório
-git clone <seu-repositorio>
+
+#### Clone o repositório
+git clone < seu-repositorio >
+<br/>
 cd meu-projeto-devops
 
-# Configure ambiente virtual
-python -m venv venv
-python3 -m venv venv # Linux
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate  # Windows
+#### Configure ambiente virtual
+python -m venv venv - no Windows <br/>
+python3 -m venv venv - no Linux <br/>
+source venv/bin/activate  - no Linux/Mac <br/>
+venv\Scripts\activate  - no Windows
 
-# Instale dependências
+#### Instale dependências
 pip install -r requirements.txt
 
-# Execute a aplicação
-python run.py # Windows
-python3 run.py # Linux
+#### Execute a aplicação
+python run.py - no Windows <br/>
+python3 run.py - no Linux
 
-# Pode ser que precise instalar no ambiente linux debian/ubuntu/mint o python3-venv para funcionar o projeto no linux, a versão pode ser que peça a mais recente: 
+Pode ser que precise instalar no ambiente linux debian/ubuntu/mint o python3-venv para funcionar o projeto no linux, a versão pode ser que peça a mais recente: 
 apt install python3.10-venv 
 
 
-#1.testes no cmd power shell para criar uma tarefa:
+#### 1. Testes no cmd power shell para criar uma tarefa:
 
 $Body = @{titulo = 'Minha primeira tarefa'} | ConvertTo-Json
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body -ContentType 'application/json'
 
-#2. Listar todas as tarefas:
+#### 2. Listar todas as tarefas:
 
 powershell
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Get
 
-#3. Deletar a tarefa (substitua o ID se necessário):
+#### 3. Deletar a tarefa (substitua o ID se necessário):
 
 powershell
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas/1' -Method Delete
 
-#4. Criar mais tarefas para testar:
+#### 4. Criar mais tarefas para testar:
 
 powershell
 $Body1 = @{titulo = 'Configurar GitHub Actions'} | ConvertTo-Json
@@ -59,23 +60,23 @@ $Body2 = @{titulo = 'Testar Docker'} | ConvertTo-Json
 Invoke-RestMethod -Uri 'http://localhost:5000/tarefas' -Method Post -Body $Body2 -ContentType 'application/json'
 
 
-#5. colocar como concluida
+#### 5. Colocar como concluida
 $BodyUpdate = @{concluida = $true} | ConvertTo-Json
 Invoke-RestMethod -Uri "http://localhost:5000/tarefas/11" -Method Put -Body $BodyUpdate -ContentType 'application/json' -Headers @{'Accept' = 'application/json'}
 
 
-Containerize sua aplicação:
-Tem que ter o docker instalado na maquina local
-powershell
-# Na pasta do seu projeto
+### Containerize sua aplicação:
+Tem que ter o docker instalado na maquina local <br/><br/>
+Comandos usando powershell
+#### Na pasta do seu projeto
 docker build -t minha-api-tarefas .
 
-# Execute
+#### Execute
 docker run -p 5000:5000 minha-api-tarefas
 
-1. Teste a API no container:
-powershell
+Teste a API no container:<br/>
+No powershell:<br/>
 Invoke-RestMethod -Uri 'http://localhost:5000/health' -Method Get
 
-#Só um teste no Windows 11 na em casa
+##### Os comandos são os mesmos de antes de usar o Docker.
 
