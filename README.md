@@ -78,7 +78,7 @@ Teste a API no container: <br/>
 No powershell:<br/>
 Invoke-RestMethod -Uri 'http://localhost:5000/health' -Method Get
 
-Use os mesmos comandos que foram usados acima antes de Containerizar
+Use os mesmos comandos que foram usados acima, antes de Containerizar.
 
 
 
